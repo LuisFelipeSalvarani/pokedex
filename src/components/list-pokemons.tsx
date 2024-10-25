@@ -41,7 +41,7 @@ export function ListPokemons() {
   if (!pokemons || pokemons?.results.length === 0)
     return <h1>Não foi possível acessar a Pokedex</h1>
 
-  const totalPage = Math.ceil(pokemons?.count / limit)
+  const totalPage = Math.floor(pokemons.count / 20)
 
   return (
     <>
@@ -49,26 +49,27 @@ export function ListPokemons() {
         {pokemons &&
           pokemons.results.length > 0 &&
           pokemons.results.map((pokemon, i) => {
+            // if (i + 1 + offset <= 1025) {
             return (
               <Link key={pokemon.name} to={`/${pokemon.name}`}>
                 <div className="relative flex-1 cursor-pointer rounded-xl bg-zinc-200 p-4 shadow-md shadow-zinc-300 transition-all hover:scale-105">
                   <div className="size-full bg-center bg-cover bg-pokeball">
                     <h2 className="border-red-600 border-l-4 pl-2 font-semibold text-xl text-zinc-700 capitalize">
-                      {pokemon.name}
+                      {pokemon.name.replace(/-/g, ' ')}
                     </h2>
                     <img
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${i + 1 + offset}.png`}
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i + 1 + offset <= 1025 ? i + 1 + offset : i + 1 + offset + 8975}.png`}
                       alt={pokemon.name}
-                      className="z-30"
                     />
                   </div>
                 </div>
               </Link>
             )
+            // }
           })}
       </div>
 
-      {totalPage > 1 && (
+      {pokemons.results.length > 1 && (
         <div className="flex flex-1 items-center justify-center">
           <Pagination page={page} totalPage={totalPage} />
         </div>

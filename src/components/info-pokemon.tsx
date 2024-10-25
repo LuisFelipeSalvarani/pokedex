@@ -50,11 +50,7 @@ export function InfoPokemon() {
           </li>
 
           <li className="flex items-center gap-2 border-zinc-300 border-b px-4 py-2">
-            <span
-              className="w-24 text-right font-semibold text-zinc-700"
-              w-24
-              text-right
-            >
+            <span className="w-24 text-right font-semibold text-zinc-700">
               Type:
             </span>
             <div className="flex items-center gap-2">
@@ -96,10 +92,7 @@ export function InfoPokemon() {
             <span className="flex flex-col">
               {pokemon.abilities.map(ability => {
                 return (
-                  <span
-                    key={ability.ability.name}
-                    className="font-bold text-zinc-700"
-                  >
+                  <span key={ability.slot} className="font-bold text-zinc-700">
                     {ability.ability.name}
                     {ability.is_hidden && (
                       <span className="ml-1 font-normal text-xs tracking-wider">

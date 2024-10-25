@@ -3,6 +3,7 @@ import type { RequestPokemon } from '../interfaces/get-pokemon'
 export function Stats({ pokemon }: { pokemon: RequestPokemon }) {
   return (
     <div>
+      <h2 className="font-bold text-xl text-zinc-700">Base stats</h2>
       {pokemon.stats.map((stat, i) => {
         const width = 320
         const percent = (stat.base_stat * 100) / width / 50

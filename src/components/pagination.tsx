@@ -14,62 +14,90 @@ interface PaginationProps {
 export function Pagination({ page, totalPage }: PaginationProps) {
   const location = useLocation()
 
-  console.log(page <= 1)
-
   return (
     <div className="flex space-x-3">
       <button
         type="button"
-        className="rounded-full bg-red-600 p-2 text-zinc-50 ring ring-zinc-300 transition-all duration-300 hover:ring-zinc-400 disabled:cursor-not-allowed disabled:select-none disabled:opacity-40"
+        className="flex items-center justify-center rounded-full bg-red-600 p-2 text-zinc-50 ring ring-zinc-300 transition-all duration-300 hover:ring-zinc-400 disabled:cursor-not-allowed disabled:select-none disabled:opacity-40"
         disabled={page <= 1}
       >
-        <Link
-          to={location.pathname}
-          className="flex size-full items-center justify-center"
-        >
-          <ChevronsLeft className="size-5" />
-          <span className="sr-only">Primeira página</span>
-        </Link>
+        {page <= 1 ? (
+          <>
+            <ChevronsLeft className="size-5" />
+            <span className="sr-only">Primeira página</span>
+          </>
+        ) : (
+          <Link
+            to={location.pathname}
+            className="flex size-full items-center justify-center"
+          >
+            <ChevronsLeft className="size-5" />
+            <span className="sr-only">Primeira página</span>
+          </Link>
+        )}
       </button>
 
       <button
         type="button"
-        className="rounded-full bg-red-600 p-2 text-zinc-50 ring ring-zinc-300 transition-all duration-300 hover:ring-zinc-400"
+        className="flex items-center justify-center rounded-full bg-red-600 p-2 text-zinc-50 ring ring-zinc-300 transition-all duration-300 hover:ring-zinc-400 disabled:cursor-not-allowed disabled:select-none disabled:opacity-40"
         disabled={page <= 1}
       >
-        <Link
-          to={`${location.pathname}?page=${page - 1}`}
-          className="flex size-full items-center justify-center"
-        >
-          <ChevronLeft className="size-5" />
-          <span className="sr-only">Página anterior</span>
-        </Link>
+        {page <= 1 ? (
+          <>
+            <ChevronLeft className="size-5" />
+            <span className="sr-only">Página anterior</span>
+          </>
+        ) : (
+          <Link
+            to={`${location.pathname}?page=${page - 1}`}
+            className="flex size-full items-center justify-center"
+          >
+            <ChevronLeft className="size-5" />
+            <span className="sr-only">Página anterior</span>
+          </Link>
+        )}
       </button>
 
       <button
         type="button"
-        className="rounded-full bg-red-600 p-2 text-zinc-50 ring ring-zinc-300 transition-all duration-300 hover:ring-zinc-400"
+        className="flex items-center justify-center rounded-full bg-red-600 p-2 text-zinc-50 ring ring-zinc-300 transition-all duration-300 hover:ring-zinc-400 disabled:cursor-not-allowed disabled:select-none disabled:opacity-40"
         disabled={page + 1 > totalPage}
       >
-        <Link
-          to={`${location.pathname}?page=${page + 1}`}
-          className="flex size-full items-center justify-center"
-        >
-          <ChevronRight className="size-5" />
-        </Link>
+        {page + 1 > totalPage ? (
+          <>
+            <ChevronRight className="size-5" />
+            <span className="sr-only">Próxima página</span>
+          </>
+        ) : (
+          <Link
+            to={`${location.pathname}?page=${page + 1}`}
+            className="flex size-full items-center justify-center"
+          >
+            <ChevronRight className="size-5" />
+            <span className="sr-only">Próxima página</span>
+          </Link>
+        )}
       </button>
 
       <button
         type="button"
-        className="rounded-full bg-red-600 p-2 text-zinc-50 ring ring-zinc-300 transition-all duration-300 hover:ring-zinc-400"
+        className="flex items-center justify-center rounded-full bg-red-600 p-2 text-zinc-50 ring ring-zinc-300 transition-all duration-300 hover:ring-zinc-400 disabled:cursor-not-allowed disabled:select-none disabled:opacity-40"
         disabled={page + 1 > totalPage}
       >
-        <Link
-          to={`${location.pathname}?page=${totalPage}`}
-          className="flex size-full items-center justify-center"
-        >
-          <ChevronsRight className="size-5" />
-        </Link>
+        {page + 1 > totalPage ? (
+          <>
+            <ChevronsRight className="size-5" />
+            <span className="sr-only">Última página</span>
+          </>
+        ) : (
+          <Link
+            to={`${location.pathname}?page=${totalPage}`}
+            className="flex size-full items-center justify-center"
+          >
+            <ChevronsRight className="size-5" />
+            <span className="sr-only">Última página</span>
+          </Link>
+        )}
       </button>
     </div>
   )
